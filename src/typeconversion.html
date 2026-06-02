@@ -6,40 +6,59 @@
     <title>Document</title>
     <link rel="stylesheet" href="output.css">
     <script>
-        function add()
+        function add(op)
         {
             var txta = document.getElementById("txta")
             var txtb = document.getElementById("txtb")
             var dmsg = document.getElementById("dmsg")
-            var c = parseInt(txta.value)+ parseInt(txtb.value)
+            var c = 0;
+           if(op=="+")
+           {
+            c=parseInt(txta.value)+ parseInt(txtb.value)
             dmsg.innerHTML="sum is "+c
-        }
-             function sub()
-        {
-            var txta = document.getElementById("txta")
-            var txtb = document.getElementById("txtb")
-            var dmsg = document.getElementById("dmsg")
-            var c = parseInt(txta.value)- parseInt(txtb.value)
+           }
+           else if(op=="-"){
+c=parseInt(txta.value)- parseInt(txtb.value)
             dmsg.innerHTML="difference is "+c
-        }
-    
-             function multi()
-        {
-            var txta = document.getElementById("txta")
-            var txtb = document.getElementById("txtb")
-            var dmsg = document.getElementById("dmsg")
-            var c = parseInt(txta.value)* parseInt(txtb.value)
+           
+           }
+           else if(op=="/"){
+c=parseInt(txta.value)/ parseInt(txtb.value)
+            dmsg.innerHTML="divide is "+c
+           
+           }
+           else if(op=="*"){
+c=parseInt(txta.value)* parseInt(txtb.value)
             dmsg.innerHTML="multiplication is "+c
+           
+           }
         }
+        //      function sub()
+        // {
+        //     var txta = document.getElementById("txta")
+        //     var txtb = document.getElementById("txtb")
+        //     var dmsg = document.getElementById("dmsg")
+        //     var c = parseInt(txta.value)- parseInt(txtb.value)
+        //     dmsg.innerHTML="difference is "+c
+        // }
     
-             function divide()
-        {
-            var txta = document.getElementById("txta")
-            var txtb = document.getElementById("txtb")
-            var dmsg = document.getElementById("dmsg")
-            var c = parseInt(txta.value)/ parseInt(txtb.value)
-            dmsg.innerHTML="division is "+c
-        }
+        //      function multi()
+        // {
+        //     var txta = document.getElementById("txta")
+        //     var txtb = document.getElementById("txtb")
+        //     var dmsg = document.getElementById("dmsg")
+        //     var c = parseInt(txta.value)* parseInt(txtb.value)
+        //     dmsg.innerHTML="multiplication is "+c
+        // }
+    
+        //      function divide()
+        // {
+        //     var txta = document.getElementById("txta")
+        //     var txtb = document.getElementById("txtb")
+        //     var dmsg = document.getElementById("dmsg")
+        //     var c = parseInt(txta.value)/ parseInt(txtb.value)
+        //     dmsg.innerHTML="division is "+c
+        // }
     
     </script>
 </head>
@@ -50,10 +69,10 @@
 <label>b</label>
         <input type="text" id="txtb" class="col-span-2 border border-gray-200">
         <div class="col-span-3 grid gap-1 grid-cols-4">
-        <input type="button" onclick="add()" value="+" class="bg-blue-300 text-white text-lg font-bold">
-        <input type="button" value="-" onclick="sub()" class="bg-blue-300 text-white text-lg font-bold">
-        <input type="button" value="/" onclick="divide()" class="bg-blue-300 text-white text-lg font-bold">
-        <input type="button" value="*" onclick="multi()" class="bg-blue-300 text-white text-lg font-bold">
+        <input type="button" onclick="add('+')" value="+" class="bg-blue-300 text-white text-lg font-bold">
+        <input type="button" value="-" onclick="add('-')" class="bg-blue-300 text-white text-lg font-bold">
+        <input type="button" value="/" onclick="add('/')" class="bg-blue-300 text-white text-lg font-bold">
+        <input type="button" value="*" onclick="add('*')" class="bg-blue-300 text-white text-lg font-bold">
         </div>
         <div class="col-span-3 font-bold text-center " id="dmsg">
 
