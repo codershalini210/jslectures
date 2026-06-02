@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+    <script>
+       function hi()
+       {
+        let txtName = document.getElementById("txtName")
+        let hmsg = document.getElementById("hmsg")
+        // alert("Welcome "+txtName.value)
+        hmsg.innerHTML="Welcome "+txtName.value
+        txtName.value=""
+       }
+       function gm(name)
+       {
+        alert("Good morning "+name)
+       }
+    </script>
+</head>
+<body>
+    <p>
+        Enter your name : <input type="text" id="txtName" class="border border-gray-400" >
+    </p>
+    <h2 id="hmsg"></h2>
+    <input type="button" class="h-8 w-32 bg-violet-600 text-white" value="Click here" onclick="hi()">
+    <input type="button" class="h-8 w-32 bg-violet-600 text-white" value="Ram" onclick="gm('Ram')">
+    <input type="button" class="h-8 w-32 bg-violet-600 text-white" value="Raman" onclick="gm('Raman')">
+</body>
+</html>
