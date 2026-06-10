@@ -3,43 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        function AddData(){
-        var txtname = document.getElementById("txtname")    
-        var tbdy = document.getElementById("tbdy")
-        if(txtname.value =="")
-        {
-            alert("Enter student name")
-        }
-        else{
-            let td = document.createElement("td")
-            let tr = document.createElement("tr")
-            td.innerHTML = txtname.value
-            tr.appendChild(td)
-            tbdy.appendChild(tr)
-            txtname.value=""
-            txtname.focus()
+    <title>Student Marks Manager</title>
+
+    <link rel="stylesheet" href="output.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <style>
+        @keyframes fadeInRow {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        .new-row {
+            animation: fadeInRow 0.5s ease;
+        }
+
+        body {
+            background: linear-gradient(
+                135deg,
+                #667eea 0%,
+                #764ba2 100%
+            );
+        }
+    </style>
+
+    <script>
+        function AddData() {
+            var txtname = document.getElementById("txtname");
+            var txtmarks = document.getElementById("txtmarks");
+            var tbdy = document.getElementById("tbdy");
+
+            if (txtname.value == "") {
+                alert("Enter student name");
+                txtname.focus();
+                return;
+            }
+
+            let tr = document.createElement("tr");
+            tr.classList.add("new-row");
+
+            let td = document.createElement("td");
+            let td1 = document.createElement("td");
+
+            td.innerHTML = txtname.value;
+            td1.innerHTML = txtmarks.value;
+
+            td.className = "px-4 py-3";
+            td1.className = "px-4 py-3 text-center font-semibold";
+
+            tr.appendChild(td);
+            tr.appendChild(td1);
+
+            if (parseInt(txtmarks.value) < 35) {
+                tr.className +=
+                    " bg-red-200 hover:bg-red-300 transition duration-300";
+            } else {
+                tr.className +=
+                    " bg-green-200 hover:bg-green-300 transition duration-300";
+            }
+
+            tbdy.appendChild(tr);
+
+            txtname.value = "";
+            txtmarks.value = "";
+            txtname.focus();
         }
     </script>
 </head>
-<body>
-    <p>Enter student name : <input type="text" id="txtname">
-        <br>
-        Enter marks : <input type="number">
-    <input type="button" value="add" onclick="AddData()"></p>
-    <table border=""> 
-        <thead>
-            <tr>
-                <td>Student Name</td>
-            </tr>
-        </thead>
-        <tbody id="tbdy">
 
-        </tbody>
-    </table>
-    
+<body class="min-h-screen flex items-center justify-center p-5">
+
+    <div
+        class="w-full max-w-4xl backdrop-blur-lg bg-white/20 border border-white/30 rounded-3xl shadow-2xl p-6 md:p-10">
+
+        <h1
+            class="text-3xl md:text-4xl font-bold text-center text-white mb-8 animate-pulse">
+            🎓 Student Marks Manager
+        </h1>
+
+        <!-- Form Section -->
+        <div class="grid md:grid-cols-3 gap-4 mb-8">
+
+            <input
+                type="text"
+                id="txtname"
+                placeholder="Enter Student Name"
+                class="p-3 rounded-xl border-2 border-white/30 bg-white/30 text-white placeholder-white focus:outline-none focus:ring-4 focus:ring-indigo-300 transition">
+
+            <input
+                type="number"
+                id="txtmarks"
+                placeholder="Enter Marks"
+                class="p-3 rounded-xl border-2 border-white/30 bg-white/30 text-white placeholder-white focus:outline-none focus:ring-4 focus:ring-indigo-300 transition">
+
+            <button
+                onclick="AddData()"
+                class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold rounded-xl px-6 py-3 shadow-lg transition duration-300">
+                ➕ Add Student
+            </button>
+
+        </div>
+
+        <!-- Table Section -->
+        <div class="overflow-x-auto">
+
+            <table
+                class="w-full overflow-hidden rounded-2xl bg-white shadow-xl">
+
+                <thead>
+                    <tr
+                        class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+
+                        <th class="px-4 py-4 text-left">
+                            Student Name
+                        </th>
+
+                        <th class="px-4 py-4 text-center">
+                            Marks
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbdy">
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Legend -->
+        <div
+            class="flex flex-wrap justify-center gap-4 mt-6 text-white font-medium">
+
+            <div class="flex items-center gap-2">
+                <span class="w-4 h-4 bg-green-300 rounded-full"></span>
+                Pass (35+)
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span class="w-4 h-4 bg-red-300 rounded-full"></span>
+                Fail (&lt;35)
+            </div>
+
+        </div>
+
+    </div>
+
 </body>
 </html>
