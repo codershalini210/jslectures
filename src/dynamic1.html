@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function AddData(){
+        var txtname = document.getElementById("txtname")    
+        var tbdy = document.getElementById("tbdy")
+        if(txtname.value =="")
+        {
+            alert("Enter student name")
+        }
+        else{
+            let td = document.createElement("td")
+            let tr = document.createElement("tr")
+            td.innerHTML = txtname.value
+            tr.appendChild(td)
+            tbdy.appendChild(tr)
+            txtname.value=""
+            txtname.focus()
+        }
+
+        }
+    </script>
+</head>
+<body>
+    <p>Enter student name : <input type="text" id="txtname">
+    <input type="button" value="add" onclick="AddData()"></p>
+    <table>
+        <thead>
+            <tr>
+                <td>Student Name</td>
+            </tr>
+        </thead>
+        <tbody id="tbdy">
+
+        </tbody>
+    </table>
+    
+</body>
+</html>

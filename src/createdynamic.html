@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        count = 1
+        function addbox()
+        {
+            var dblocks = document.getElementById("dblocks")
+            let txtbox = document.createElement("input")
+            txtbox.type="text"
+            txtbox.id = "txth"+count 
+            count++
+            dblocks.appendChild(txtbox)
+
+        }
+        function showvalues()
+        {
+            var phobbies = document.getElementById("phobbies")
+            phobbies.innerHTML = document.getElementById("txth").value
+            for(i=1;i<count;i++){
+                phobbies.innerHTML+=" <br> "+ document.getElementById("txth"+i).value 
+            }
+        }
+    </script>
+</head>
+<body>
+   <p> Enter Hobby : <input type="text" id="txth"> </p>
+   <div id="dblocks">
+   </div>
+     <input type="button" value="+" onclick="addbox()">
+     <input type="button" value="submit" onclick="showvalues()">
+
+    <p id="phobbies">
+
+    </p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       p{
+        
+        overflow: hidden;
+       }
+        .inc{        
+            animation: animate 2s linear;       
+        }
+        @keyframes animate {
+            from{height:0px;}
+            to{height:120px;}
+            
+        }
+    </style>
+    <script>
+        let n =0 
+        function numbers()
+        {
+            let pnumbers = document.getElementById("pnumbers")
+            pnumbers.innerHTML=""
+
+            for(let i =1; i<=6 ; i++ )
+            {                                
+                pnumbers.innerHTML+= i+ "<br>"
+            }
+            pnumbers.className = ""
+            pnumbers.offsetHeight;
+            pnumbers.className = "inc"
+        }
+        function increment()
+        {
+            pnumbers = document.getElementById("pnumbers")
+            
+            if(n==5)
+            {
+                return
+            }
+            n++;
+            document.getElementById("pnumbers").innerHTML = n
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="+" onclick="increment()">
+    <input type="button" value="click here" onclick="numbers()">
+    <p id="pnumbers">0</p>
+    <p>enter any no : <input type="text">
+    <input type="button" value="table" > <input type="button" value="reverse table"></p>
+</body>
+</html>
