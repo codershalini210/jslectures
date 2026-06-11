@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let students = []
+        function AddStudent(){            
+            let txtname =  document.getElementById("txtname")
+            let pstudents = document.getElementById("pstudents")
+            pstudents.innerHTML = ""
+            students.push(txtname.value)
+            for(i=students.length-1;i>=0;i--)
+        {
+            pstudents.innerHTML +="<br>"+ students[i]
+        }
+        txtname.value = ""
+        txtname.focus()
+        }
+        function findStudent(){
+             let txtname =  document.getElementById("txtname")
+             let hmsg  = document.getElementById("hmsg")
+            //  console.log(students.findIndex((e)=>e==txtname.value))
+             if(students.findIndex((e)=>e==txtname.value) > -1)
+             {
+                hmsg.innerHTML = "student found in list"
+             }
+             else{
+                hmsg.innerHTML = "STudent not found in list"
+             }
+        }
+    </script>
+</head>
+<body>
+    
+    <p>
+        Enter student name : <input type="text" id="txtname">
+        <input type="button" value="Add" onclick="AddStudent()">
+         <input type="button" value="Find" onclick="findStudent()">
+
+    </p>
+    <h2 id="hmsg"></h2>
+    <p id="pstudents">
+
+    </p>
+</body>
+</html>
