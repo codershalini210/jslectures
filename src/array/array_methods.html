@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        students = []
+        function addstudent()
+        {
+            let txtname = document.getElementById("txtname")
+            let hmsg = document.getElementById("hmsg")
+            if(txtname.value !=""){
+                if(students.includes(txtname.value)){
+                    hmsg.innerHTML = "student already present"
+                }
+                else{
+                students.unshift(txtname.value)
+                }
+            }
+            else{
+                hmsg.innerHTML = "Can't add blank "
+            }
+            showstudents()
+            clearbox()
+
+        }
+        function clearbox()
+        {
+             let txtname = document.getElementById("txtname")
+             txtname.value = ""
+             txtname.focus()
+        }
+        function showstudents()
+        {
+            console.log(students)
+            let lststudents = document.getElementById("lststudents")
+            let ui = students.map((s)=>{
+                return `<li>${s}</li>`
+            }).join("")
+            lststudents.innerHTML = ui
+        }
+        function deletestudent()
+        {
+            students.shift()
+            showstudents()
+        }
+    </script>
+</head>
+<body>
+    <p>Enter student name : 
+        <input type="text" id="txtname">
+        <input type="button" value="+" onclick="addstudent()">
+    </p>
+    <h2 id="hmsg"></h2>
+    <input type="button" value="-" onclick="deletestudent()">
+    <ul id="lststudents"></ul>
+    
+</body>
+</html>
