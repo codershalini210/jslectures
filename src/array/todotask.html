@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let taskary = []
+        let hiddenindex=-1
+        function addTask(){
+            let txttask = document.getElementById("txttask")           
+            let hmsg = document.getElementById("hmsg")            
+            if(txttask.value=="")
+            {
+                hmsg.innerHTML = "Please Enter Task"    
+            }
+            else{
+                if(taskary.findIndex((e)=>e.taskname==txttask.value)>=0){
+                    hmsg.innerHTML = "Task already present"
+                }
+                else{
+                    if(btnadd.value=="Add")
+                {
+                    let task = {taskname:"",status:"Pending"}
+                    task.taskname = txttask.value
+                    taskary.unshift(task)
+                    showTask()
+                    hmsg.innerHTML = "Record inserted"
+                    txttask.value=""
+                }
+                else{
+                    let task =taskary[hiddenindex]
+                    task.taskname = txttask.value
+                    showTask()
+                    hmsg.innerHTML = "Task value updated"
+                    txttask.value = ""
+                    btnadd.value = "Add"
+                }
+                }
+            }
+        }
+        function deleteTask(index){
+            taskary.splice(index,1)
+            showTask()
+        }
+        function showTask(){
+             let tbdy = document.getElementById("tbdy")
+            let ui = taskary.map((e,index)=>
+        {
+            cname ="orange"
+            d = ""
+            if(e.status == "Complete")
+        {
+            cname = "greenyellow"
+            d="disabled"
+        }
+            return `<tr style='background-color:${cname}'>
+                <td>${e.taskname}</td>
+                <td>${e.status}</td>
+                <td><input type="button" ${d} value ="Complete" onclick='CompleteTask(${index})'/></td>
+                <td><input type="button" ${d} value ="Delete" onclick='deleteTask(${index})'/></td>
+                <td><input type="button" ${d} value ="Edit" onclick='edit(${index})'/></td>
+                </tr>`
+        }).join("")
+        tbdy.innerHTML=ui
+        }
+        function CompleteTask(index){
+            taskary[index].status = "Complete"
+            showTask()
+        }
+        function edit(index)
+        {
+            let btnadd = document.getElementById("btnadd")
+            btnadd.value="Update"
+            txttask.value=taskary[index].taskname
+            hiddenindex = index
+        }
+    </script>
+</head>
+<body>
+    <p>Taskname :
+        <input type="text" id="txttask">
+    </p>
+    <input type="button" id="btnadd" value="Add" onclick="addTask()">
+    <h2 id="hmsg"></h2>
+    <table border="">
+        <thead><tr>
+            <th>Task</th> <th>Status</th>
+            <th>Complete</th> <th>delete</th>
+        <th>Edit</th></tr></thead>
+        <tbody id="tbdy">
+        </tbody>
+    </table>
+</body>
+</html>

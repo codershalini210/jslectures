@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        students =[]
+        function addstudent(){
+            var txtname = document.getElementById("txtname")
+            var txtmarks = document.getElementById("txtmarks")
+            var pmsg = document.getElementById("hmsg")
+            if((students.findIndex((s)=>s.name == txtname.value)!=-1)){
+                pmsg.innerHTML = "Student already present"
+            }
+            else{
+                 let student = {"name":txtname.value,"marks":txtmarks.value}   
+                 students.push(student)
+                 showStudents()
+                 txtmarks.value=""
+                 txtname.value=""
+                 pmsg.innerHTML=""
+                 txtmarks.focus()
+            }
+        }
+        function showStudents()
+        {
+            let cname = "yellowgreen"
+            let ui = students.map((s)=>
+                {
+                    if(parseInt(s.marks)<35){
+                        cname = "orange"
+                    }
+                    else{
+                        cname = "yellowgreen"
+                    }
+                    return `<tr style='background-color:${cname}'>
+                        <td>${s.name}</td>
+                        <td>${s.marks}</td>
+                        </tr>`            
+                }).join("")
+            document.getElementById("tbdy").innerHTML = ui 
+
+        }
+    </script>
+</head>
+<body>
+    <p>Enter name : <input type="text" id="txtname">
+    </p>
+    <p> Enter marks : <input type="text" id="txtmarks"></p>
+    <input type="button" value="add" onclick="addstudent()">
+    <h3 id="hmsg"></h3>
+    <table><thead>
+        <tr>
+            <th>name</th>
+            <th>marks</th>
+        </tr>
+    </thead>
+    <tbody id="tbdy">
+
+    </tbody>
+</table>
+    
+</body>
+</html>
