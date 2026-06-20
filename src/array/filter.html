@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function demo()
+        {
+            let numbers = [45,25,485,126,542,48,186,12]
+            evennos = numbers.filter((e)=>e%2==0)
+            console.log(numbers)
+            console.log(evennos)            
+        }
+        function passstudents()
+        {
+            let students = [
+       {name:"s1",marks:65},{name:"s2",marks:25},{name:"s3",marks:63},
+       {name:"s4",marks:45},{name:"s5",marks:12},
+            ]
+        
+        let passsts = students.filter((s)=>s.marks>34)
+        console.log(passsts)
+        }
+
+    </script>
+</head>
+<body onload="passstudents()">
+    
+</body>
+</html>

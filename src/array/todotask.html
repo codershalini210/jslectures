@@ -75,9 +75,34 @@
             txttask.value=taskary[index].taskname
             hiddenindex = index
         }
+        function filtertask(st){
+               let tbdy = document.getElementById("tbdy")
+               let stary = taskary.filter((s)=>s.status ==st)
+            let ui = stary.map((e,index)=>
+        {
+            cname ="orange"
+            d = ""
+            if(e.status == "Complete")
+        {
+            cname = "greenyellow"
+            d="disabled"
+        }
+            return `<tr style='background-color:${cname}'>
+                <td>${e.taskname}</td>
+                <td>${e.status}</td>
+                <td><input type="button" ${d} value ="Complete" onclick='CompleteTask(${index})'/></td>
+                <td><input type="button" ${d} value ="Delete" onclick='deleteTask(${index})'/></td>
+                <td><input type="button" ${d} value ="Edit" onclick='edit(${index})'/></td>
+                </tr>`
+        }).join("")
+        tbdy.innerHTML=ui
+        }
     </script>
 </head>
 <body>
+<input  type="button" value="All" onclick="showTask()">
+    <input  type="button" value="complete" onclick="filtertask('Complete')">
+    <input  type="button" value="Pending" onclick="filtertask('Pending')">
     <p>Taskname :
         <input type="text" id="txttask">
     </p>
