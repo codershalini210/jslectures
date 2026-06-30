@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function fun1()
+        {
+            let ps = document.getElementById("ps")
+            let pm = document.getElementById("pm")
+            // ptime.innerHTML = date.toLocaleDateString('en-GB'); 
+            let count =0
+            setInterval(()=>{
+                let date = new Date()
+            ps.innerHTML = date.getSeconds()
+            
+            if(date.getSeconds()==0 || count==0 ){
+            pm.innerHTML = date.getMinutes()
+        count++}
+            },1000)
+            
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="Start" onclick="fun1()">
+<p id="pm"></p>
+<p id="ps"></p>
+</body>
+</html>
